@@ -3,13 +3,22 @@ import dotenv from 'dotenv';
 import { Aggregator } from './core/aggregator.js';
 import { SkinportProvider } from './providers/skinport.js';
 import { SteamProvider } from './providers/steam.js';
+import { DMarketProvider } from './providers/dmarket.js';
+import { Buff163Provider } from './providers/buff163.js';
+import { WaxpeerProvider } from './providers/waxpeer.js';
 import { handleSkinCommand } from './commands/skin.js';
 import { createLimiter } from './util/rate.js';
 import { logger } from './util/logger.js';
 
 dotenv.config();
 
-const providers = [new SkinportProvider(), new SteamProvider()];
+const providers = [
+  new SkinportProvider(),
+  new SteamProvider(),
+  new DMarketProvider(),
+  new Buff163Provider(),
+  new WaxpeerProvider()
+];
 const globalLimiter = createLimiter({ minTime: 200, maxConcurrent: 3 });
 const aggregator = new Aggregator(providers, globalLimiter);
 

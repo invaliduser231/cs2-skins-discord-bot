@@ -16,7 +16,13 @@ export type SearchQuery = {
   limitPerMarket?: number;
   currency?: string;
   country?: string;
+  priceMin?: number;
+  priceMax?: number;
+  providers?: string[];
+  sortBy?: SortStrategy;
 };
+
+export type SortStrategy = 'price' | 'discount' | 'market' | 'name';
 
 export type MarketResult = {
   market: string;
